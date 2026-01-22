@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main">
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Your Wishlist</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+            <li class="breadcrumb-item active text-white">Wishlist</li>
+        </ol>
+    </div>
+
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wishlist-list">
+                        {% include "core/async/wishlist-list.html" %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

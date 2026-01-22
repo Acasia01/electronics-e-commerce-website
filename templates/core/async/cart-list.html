@@ -1,0 +1,83 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Refresh</th>
+            <th>Remove</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if cart_data %}
+            {% for product_id, item in cart_data.items %}
+                <tr>
+                    <th>
+                        <p class="mb-0 py-4">{{ item.title }}</p>
+                    </th>
+
+                    <td class="product-thumbnail pt-40">
+                        <img src="{{ item.image }}" alt="">
+                    </td>
+
+                    <td>
+                        <p class="mb-0 py-4">G2356</p>
+                    </td>
+
+                    <td>
+                        <p class="mb-0 py-4">{{ item.price }}</p>
+                    </td>
+
+                    <td>
+                        <div class="input-group quantity py-4" style="width: 100px;">
+                            <input
+                                type="text" id="" min="1"
+                                class="form-control form-control-sm text-center border-0 product-qty-{{product_id}}"
+                                value="{{ item.qty }}"
+                            >
+                        </div>
+                    </td>
+
+                    <td>
+                        <p class="mb-0 py-4">
+                            {% widthratio item.price 1 item.qty %}
+                        </p>
+                    </td>
+
+                    <td class="py-4">
+                        <button class="btn btn-md rounded-circle bg-light border">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </td>
+
+                    <td class="py-4">
+                        <button
+                            class="btn btn-md rounded-circle bg-light border delete-product"
+                            data-product="{{ product_id }}">
+                            <i class="fa fa-times text-danger"></i>
+                        </button>
+                    </td>
+
+                    <td class="py-4">
+                        <button
+                            class="btn btn-md rounded-circle bg-light border update-product"
+                            data-product="{{ product_id }}">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="8" class="text-center py-4 text-muted">
+                    Your cart is empty
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>

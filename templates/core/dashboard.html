@@ -1,0 +1,93 @@
+{% extends "partials/base.html" %}
+{%load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-white shadow-lg">
+            <div class="p-6 text-xl font-bold border-b">My Dashboard</div>
+            <nav class="p-4 space-y-2">
+                <a href="#" class="block p-3 rounded-lg bg-gray-100 font-medium">Dashboard</a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">My Orders</a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">Profile</a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">Addresses</a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">Wishlist</a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 text-red-500">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Welcome, {{request.user|title}} 👋</h1>
+                <div class="flex items-center gap-3">
+                    <img src="https://via.placeholder.com/40" class="rounded-full" alt="User" />
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-5 rounded-xl shadow">
+                    <p class="text-gray-500">Total Orders</p>
+                    <h2 class="text-2xl font-bold">24</h2>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow">
+                    <p class="text-gray-500">Pending Orders</p>
+                    <h2 class="text-2xl font-bold">3</h2>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow">
+                    <p class="text-gray-500">Wishlist Items</p>
+                    <h2 class="text-2xl font-bold">12</h2>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow">
+                    <p class="text-gray-500">Total Spent</p>
+                    <h2 class="text-2xl font-bold">₹18,450</h2>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="bg-white rounded-xl shadow p-6">
+                <h2 class="text-xl font-bold mb-4">Recent Orders</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-3">Order ID</th>
+                                <th class="p-3">Date</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3">Total</th>
+                                <th class="p-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for o in orders%}
+                            <tr>
+                                <td class="p-3">#{{o.order_date}}</td>
+                                <td class="p-3">{{o.product_status|title}}</td>
+                                {%if o.paid_status == True%}
+                                <td class="fas fa-check-circle text-success">Delivered</td>
+                                {%else%}
+                                <td class="text-danger"><b><span>no</span></b></td>
+                                {%endif%}
+                                <td class="p-3">{{p.price}}</td>
+                                <td class="p-3"><a href="#" class="text-blue-500">View</a></td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+{%endblock%}
