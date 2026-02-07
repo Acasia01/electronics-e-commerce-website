@@ -237,47 +237,57 @@
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <h4 class="text-primary border-bottom border-primary border-2 d-inline-block p-2 title-border-radius wow fadeInUp"
                     data-wow-delay="0.1s">Products</h4>
-                <h1 class="mb-0 display-3 wow fadeInUp" data-wow-delay="0.3s">All Product Items</h1>
+                <h1 class="mb-0 display-3 wow fadeInUp" data-wow-delay="0.3s">New Arrivals</h1>
             </div>
             <div class="productList-carousel owl-carousel pt-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="productImg-carousel owl-carousel productList-item">
-                    <div class="productImg-item products-mini-item border">
-                        <div class="row g-0">
-                        {%for p in new_arrivals%}
-                            <div class="col-5">
-                                <div class="products-mini-img border-end h-100">
-                                    <img src="{{p.image.url}}" class="img-fluid w-100 h-100" alt="Image">
-                                    <div class="products-mini-icon rounded-circle bg-primary">
-                                        <a href="#"><i class="fa fa-eye fa-1x text-white"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="products-mini-content p-3">
-                                    <a href="#" class="d-block mb-2">{{p.category}}</a>
-                                    <a href="#" class="d-block h4">{{p.title}}<br> G2356</a>
-                                    <del class="me-2 fs-5">{{p.old_price}}</del>
-                                    <span class="text-primary fs-5">{{p.price}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="products-mini-add border p-3">
-                            <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
-                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                            <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                        class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
+
+    {% for p in new_arrivals %}
+<div class="productList-item">
+  <div class="productImg-item products-mini-item border">
+
+    <div class="row g-0">
+      <div class="col-5">
+        <div class="products-mini-img border-end">
+          <img src="{{ p.image.url }}" class="img-fluid w-100" alt="">
+          <div class="products-mini-icon rounded-circle bg-primary">
+            <a href="#"><i class="fa fa-eye fa-1x text-white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-7">
+        <div class="products-mini-content p-3">
+          <a href="#" class="d-block mb-2">{{ p.category }}</a>
+          <a href="#" class="d-block h5">{{ p.title }}</a>
+          <del class="me-2 fs-6">₹{{ p.old_price }}</del>
+          <span class="text-primary fs-6 current-product-price-{{p.id}}">₹{{ p.price }}</span>
+          <input type="hidden" value="1" class="product-quantity-{{p.id}}">
+          <input type="hidden" class="product-image-{{p.id}}" value="{{p.image}}">
+          <input type="hidden" class="product-id-{{p.id}}" value="{{p.id}}">
+          <input type="hidden" class="product-title-{{p.id}}" value="{{p.title}}">
+          <button class="add add-to-cart add-to-cart-btn btn btn-primary border-secondary rounded-pill py-2 px-4" data-index="{{p.id}}">
+            <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+          </button>
+           <div class="d-flex justify-content-center mt-2">
+        <a href="#" class="text-primary me-3">
+          <span class="rounded-circle btn-sm-square border">
+            <i class="fas fa-random"></i>
+          </span>
+        </a>
+
+        <a href="#" class="add-to-wishlist" data-product-item="{{ p.id }}">
+          <span class="rounded-circle btn-sm-square border">
+            <i class="fas fa-heart"></i>
+          </span>
+        </a>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
         </div>
     </div>
     <!-- Product List End -->

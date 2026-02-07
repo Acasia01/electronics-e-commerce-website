@@ -122,7 +122,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     <!-- Searvices End -->
 
 
-    <!-- Products Offer Start -->
+    <!-- Products Offer Start
     <div class="container-fluid bg-light py-5">
         <div class="container">
             <div class="row g-4">
@@ -142,7 +142,7 @@ input[type="range"]::-webkit-slider-runnable-track {
             </div>
         </div>
     </div>
-    <!-- Products Offer End -->
+    Products Offer End -->
 
     <!-- Shop Page Start -->
     <div class="container-fluid shop py-5">
@@ -174,6 +174,7 @@ input[type="range"]::-webkit-slider-runnable-track {
                             {%endfor%}
                         </ul>
                     </div>
+                    <!---
                     <div class="price mb-4">
                         <div class="price mb-4">
                         <h4 class="mb-2">By Price</h4>
@@ -181,7 +182,6 @@ input[type="range"]::-webkit-slider-runnable-track {
                         <div class="d-flex justify-content-between">
                         <div class="caption">From: <strong id="priceMinLabel" class="text-brand">{{min_max_price.price__min|floatformat:2}}</strong>
                     </div>
-
                     <div class="caption">To:
                         <strong id="priceMaxLabel" class="text-brand">{{min_max_price.price__max|floatformat:2}}</strong>
                     </div>
@@ -247,6 +247,7 @@ input[type="range"]::-webkit-slider-runnable-track {
                             </li>
                         </ul>
                     </div>
+                -->
                     <div class="featured-product mb-4">
                         <h4 class="mb-3">Featured products</h4>
                         {% for p in new_arrivals%}
@@ -274,6 +275,7 @@ input[type="range"]::-webkit-slider-runnable-track {
                             <a href="#" class="btn btn-primary px-4 py-3 rounded-pill w-100">Vew More</a>
                         </div>
                     </div>
+                    <!--
                     <a href="#">
                         <div class="position-relative">
                             <img src="{%static 'assets/img/product-banner-2.jpg '%}" class="img-fluid w-100 rounded" alt="Image">
@@ -285,6 +287,7 @@ input[type="range"]::-webkit-slider-runnable-track {
                             </div>
                         </div>
                     </a>
+                -->
                     <div class="product-tags py-4">
                         <h4 class="mb-3">PRODUCT TAGS</h4>
                         <div class="product-tags-items bg-light rounded p-3">
