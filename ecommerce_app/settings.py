@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'ckeditor',
     
     #Paypal integration
-    'paypal.standard.ipn',
+    #'paypal.standard.ipn',
     
     #installed apps
     'core',
