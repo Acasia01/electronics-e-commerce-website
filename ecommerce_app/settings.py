@@ -92,6 +92,17 @@ WSGI_APPLICATION = 'ecommerce_app.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # 1. Fetch the environment variable
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+'''
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 # 2. Check if the URL is valid to prevent the "Scheme ://" crash
@@ -112,7 +123,6 @@ else:
         }
     }
     
-'''
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
