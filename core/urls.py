@@ -57,7 +57,7 @@ urlpatterns = [
     
     path('dashboard/', customer_dashboard,name="dashboard"),
     
-    path('dashboard/order/<int:id', order_detail,name="order-detail"),
+    path('dashboard/order/<int:id>/', order_detail,name="order-detail"),
     
     path('contact/',contact,name="contact"),
     path("ajax-contact-form/",ajax_contact_form,name="ajax-contact-form"),
