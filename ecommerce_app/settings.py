@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import dj_database_url
 from pathlib import Path
 import dj_database_url
 import os
@@ -90,6 +89,31 @@ WSGI_APPLICATION = 'ecommerce_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+# 1. Fetch the environment variable
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+# 2. Check if the URL is valid to prevent the "Scheme ://" crash
+if DATABASE_URL and "://" in DATABASE_URL and not DATABASE_URL.startswith("://"):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    # 3. Safe fallback to SQLite if Railway's URL is missing or broken
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    
+'''
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
@@ -104,7 +128,7 @@ else:
             'NAME': 'db.sqlite3',
         }
     }
-
+'''
 '''
 DATABASES = {
     'default': dj_database_url.parse(
